@@ -1,7 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jaham <jaham@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/16 19:20:20 by jaham             #+#    #+#              #
+#    Updated: 2022/03/16 19:20:20 by jaham            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	:=	libft.a
 
 CC 		:=	cc
-CFLAGS	:=	-Wall -Wextra -Werror -g
+CFLAGS	:=	-Wall -Wextra -Werror
 
 SRCS	:=	ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strlen.c \
@@ -24,25 +36,17 @@ RM		:=	rm
 RMFLAGS	:=	-f
 
 AR		:=	ar
-ARFLAGS	:=	rcs
-
-ISBONUS	:=	0
-
-ifeq ($(ISBONUS), 0)
-	CURR_OBJS = $(OBJS)
-else
-	CURR_OBJS = $(OBJS) $(BOBJS)
-endif
+ARFLAGS	:=	rcus
 
 .PHONY	:	all
 all		:	$(NAME)
 
-$(NAME)	:	$(CURR_OBJS)
+$(NAME)	:	$(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 .PHONY	:	bonus
-bonus	:
-	make ISBONUS=1 all
+bonus	:	$(OBJS) $(BOBJS)
+	$(AR) $(ARFLAGS) $(NAME) $^
 
 .PHONY	:	.c.o
 .c.o	:
