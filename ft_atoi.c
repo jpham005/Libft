@@ -25,7 +25,7 @@ int	ft_atoi(const char *str)
 	ret = 0;
 	while ('0' <= *str && *str <= '9')
 	{
-		if (ret > (unsigned long) LONG_MAX / 10 + (sign < 0))
+		if (ret > (unsigned long) LONG_MAX / 10)
 			return ((sign < 0) - 1);
 		ret *= 10;
 		if (ret > (unsigned long) LONG_MAX - *str + '0' + (sign < 0))
